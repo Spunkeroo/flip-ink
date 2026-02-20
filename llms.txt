@@ -1,0 +1,26 @@
+# Flip Ink
+
+> Card flipping profit tracker for Pokemon & Sports card collectors
+
+Flip Ink is a free profit tracker for card flippers. Log purchases, sales, and fees to see true ROI on every card flip. Built for Pokemon & Sports card resellers.
+
+## Features
+- Profit dashboard with win rate and ROI
+- Auto fee calculator (eBay, TCGPlayer, PayPal, Stripe, shipping)
+- Trend analysis by card type and category
+- Inventory tracker for unsold holdings
+- Mobile-first for use at card shows
+- Tax export (CSV) for Pro users
+
+## Pricing
+- Free: 50 flips/month, basic dashboard
+- Pro ($9/mo): Unlimited flips, advanced analytics, tax export
+
+## Status
+Currently in waitlist phase. Join at https://flip.ink
+
+## Links
+- Website: https://flip.ink
+- Live Marketplace: https://sell.party
+- Price Comparison: https://sell.singles
+- Courses: https://flip.courses
