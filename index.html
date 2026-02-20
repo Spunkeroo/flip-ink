@@ -59,7 +59,7 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 /* Profit Demo */
 .profit-demo{max-width:500px;margin:0 auto 40px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .pd-header{background:var(--surface);padding:16px 20px;font-weight:700;font-size:.9rem;display:flex;justify-content:space-between;border-bottom:1px solid var(--border)}
-.pd-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--border);font-size:.85rem;align-items:center}
+.pd-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--border);font-size:.85rem;align-items:center;cursor:pointer}
 .pd-row:last-child{border:none}
 .pd-card{font-weight:600}
 .pd-buy{color:var(--danger)}
@@ -81,19 +81,19 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 .section-title{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:800;text-align:center;margin-bottom:12px}
 .section-sub{text-align:center;color:var(--muted);max-width:550px;margin:0 auto 48px}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px}
-.step{text-align:center;padding:32px}
+.step{text-align:center;padding:32px;cursor:pointer}
 .step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--blue));color:#fff;font-weight:800;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .step h3{font-size:1.15rem;font-weight:700;margin-bottom:8px}
 .step p{color:var(--muted);font-size:.9rem}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.feat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .3s}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .3s;cursor:pointer}
 .feat:hover{border-color:var(--primary);transform:translateY(-2px)}
 .feat-icon{font-size:2rem;margin-bottom:16px}
 .feat h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
 .feat p{color:var(--muted);font-size:.9rem}
 /* Pricing */
 .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:700px;margin:0 auto}
-.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;text-align:center;transition:all .3s;position:relative}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;text-align:center;transition:all .3s;position:relative;cursor:pointer}
 .price-card.pop{border-color:var(--primary);box-shadow:0 0 40px rgba(16,185,129,.12)}
 .price-card.pop::before{content:'BEST VALUE';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;padding:4px 16px;border-radius:99px;font-size:.75rem;font-weight:700}
 .price-tier{font-size:1rem;font-weight:600;color:var(--muted);margin-bottom:8px}
@@ -172,10 +172,10 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 <p class="hero-sub">Log card purchases, sales, and fees. Know your true ROI on every single flip. Built for Pokemon &amp; Sports card flippers.</p>
 <div class="profit-demo">
   <div class="pd-header"><span>Recent Flips</span><span style="color:var(--primary)">Live Demo</span></div>
-  <div class="pd-row"><span class="pd-card">Charizard VMAX</span><span class="pd-buy">-$85</span><span class="pd-sell">$142</span><span class="pd-profit pos">+$47</span></div>
-  <div class="pd-row"><span class="pd-card">Jeter Rookie PSA 9</span><span class="pd-buy">-$220</span><span class="pd-sell">$385</span><span class="pd-profit pos">+$141</span></div>
-  <div class="pd-row"><span class="pd-card">Pikachu VMAX Alt</span><span class="pd-buy">-$45</span><span class="pd-sell">$38</span><span class="pd-profit neg">-$12</span></div>
-  <div class="pd-row"><span class="pd-card">Luka Doncic Prizm</span><span class="pd-buy">-$180</span><span class="pd-sell">$265</span><span class="pd-profit pos">+$62</span></div>
+  <div class="pd-row" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><span class="pd-card">Charizard VMAX</span><span class="pd-buy">-$85</span><span class="pd-sell">$142</span><span class="pd-profit pos">+$47</span></div>
+  <div class="pd-row" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><span class="pd-card">Jeter Rookie PSA 9</span><span class="pd-buy">-$220</span><span class="pd-sell">$385</span><span class="pd-profit pos">+$141</span></div>
+  <div class="pd-row" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><span class="pd-card">Pikachu VMAX Alt</span><span class="pd-buy">-$45</span><span class="pd-sell">$38</span><span class="pd-profit neg">-$12</span></div>
+  <div class="pd-row" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><span class="pd-card">Luka Doncic Prizm</span><span class="pd-buy">-$180</span><span class="pd-sell">$265</span><span class="pd-profit pos">+$62</span></div>
   <div class="pd-total"><span>Total Profit (after fees)</span><span class="total-val">+$238</span></div>
 </div>
 <button class="hero-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Start Tracking Free</button>
@@ -190,9 +190,9 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 <h2 class="section-title">How It Works</h2>
 <p class="section-sub">Three steps to know your exact profit on every flip</p>
 <div class="steps">
-  <div class="step"><div class="step-num">1</div><h3>Log Your Buy</h3><p>Add what you paid, where you bought it, and the card details. Takes 10 seconds.</p></div>
-  <div class="step"><div class="step-num">2</div><h3>Log Your Sale</h3><p>Record the sale price. We auto-calculate marketplace fees, shipping, and PayPal/Stripe cuts.</p></div>
-  <div class="step"><div class="step-num">3</div><h3>See Real Profit</h3><p>Your dashboard shows true net profit after ALL fees. Track your win rate, ROI, and trends over time.</p></div>
+  <div class="step" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="step-num">1</div><h3>Log Your Buy</h3><p>Add what you paid, where you bought it, and the card details. Takes 10 seconds.</p></div>
+  <div class="step" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="step-num">2</div><h3>Log Your Sale</h3><p>Record the sale price. We auto-calculate marketplace fees, shipping, and PayPal/Stripe cuts.</p></div>
+  <div class="step" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="step-num">3</div><h3>See Real Profit</h3><p>Your dashboard shows true net profit after ALL fees. Track your win rate, ROI, and trends over time.</p></div>
 </div>
 </div></section>
 
@@ -200,12 +200,12 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 <h2 class="section-title">Built for Flippers</h2>
 <p class="section-sub">Every feature a card flipper actually needs</p>
 <div class="features">
-  <div class="feat"><div class="feat-icon">📊</div><h3>Profit Dashboard</h3><p>See total profit, win rate, average ROI, and best/worst flips at a glance.</p></div>
-  <div class="feat"><div class="feat-icon">💸</div><h3>Auto Fee Calculator</h3><p>eBay, TCGPlayer, PayPal, Stripe, and shipping fees calculated automatically.</p></div>
-  <div class="feat"><div class="feat-icon">📈</div><h3>Trend Analysis</h3><p>See which card types, sets, and categories are most profitable for you.</p></div>
-  <div class="feat"><div class="feat-icon">🏷️</div><h3>Inventory Tracker</h3><p>Track cards you've bought but haven't sold yet. Know your holding cost.</p></div>
-  <div class="feat"><div class="feat-icon">📱</div><h3>Mobile First</h3><p>Log flips on your phone at card shows, shops, or anywhere you buy and sell.</p></div>
-  <div class="feat"><div class="feat-icon">🧾</div><h3>Tax Reports</h3><p>Export your flip data for tax season. Know exactly what to report. (Pro)</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">📊</div><h3>Profit Dashboard</h3><p>See total profit, win rate, average ROI, and best/worst flips at a glance.</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">💸</div><h3>Auto Fee Calculator</h3><p>eBay, TCGPlayer, PayPal, Stripe, and shipping fees calculated automatically.</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">📈</div><h3>Trend Analysis</h3><p>See which card types, sets, and categories are most profitable for you.</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">🏷️</div><h3>Inventory Tracker</h3><p>Track cards you've bought but haven't sold yet. Know your holding cost.</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">📱</div><h3>Mobile First</h3><p>Log flips on your phone at card shows, shops, or anywhere you buy and sell.</p></div>
+  <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">🧾</div><h3>Tax Reports</h3><p>Export your flip data for tax season. Know exactly what to report. (Pro)</p></div>
 </div>
 </div></section>
 
@@ -213,7 +213,7 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 <h2 class="section-title">Pricing</h2>
 <p class="section-sub">Start free. Upgrade when you're ready.</p>
 <div class="pricing">
-  <div class="price-card">
+  <div class="price-card" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
     <div class="price-tier">Free</div>
     <div class="price-amount">$0</div>
     <ul class="price-list">
@@ -225,7 +225,7 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
     </ul>
     <button class="price-btn price-btn-out" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Free</button>
   </div>
-  <div class="price-card pop">
+  <div class="price-card pop" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
     <div class="price-tier">Pro</div>
     <div class="price-amount">$9<span>/mo</span></div>
     <ul class="price-list">
@@ -356,6 +356,10 @@ function copyAddr(el){navigator.clipboard.writeText(el.textContent);const o=el.t
 stRef.child('totalVisitors').once('value',s=>stRef.update({totalVisitors:(s.val()||0)+1}));
 checkExisting();trackEvent('page_view');
 const r=getRef();if(r)localStorage.setItem('flipink_ref',r);
+</script>
+<!-- Watermark Protection -->
+<script>
+(function(){var b='sell.party',t='Sell Party';function w(){var c=document.createElement('canvas');c.width=300;c.height=150;var x=c.getContext('2d');x.save();x.translate(150,75);x.rotate(-.44);x.font='600 18px Arial';x.fillStyle='rgba(255,255,255,0.04)';x.textAlign='center';x.fillText(t,0,-10);x.font='400 12px Arial';x.fillStyle='rgba(255,255,255,0.03)';x.fillText(b,0,10);x.restore();var d=document.createElement('div');d.id='_spw';d.setAttribute('data-sp','1');Object.assign(d.style,{position:'fixed',top:'0',left:'0',width:'100vw',height:'100vh',pointerEvents:'none',zIndex:'2147483647',backgroundImage:'url('+c.toDataURL()+')',backgroundRepeat:'repeat',opacity:'1',userSelect:'none'});document.body.appendChild(d);new MutationObserver(function(){if(!document.getElementById('_spw'))w()}).observe(document.body,{childList:true,subtree:true})}setInterval(function(){var e=document.getElementById('_spw');if(!e)w();else{e.style.display='';e.style.visibility='';e.style.opacity='1'}},2000);document.addEventListener('DOMContentLoaded',function(){w()})})();
 </script>
 </body>
 </html>
