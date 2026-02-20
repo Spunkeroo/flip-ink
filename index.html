@@ -156,9 +156,57 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 .footer-copy{color:var(--muted);font-size:.8rem}
 .footer-tip{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:99px;font-size:.85rem;cursor:pointer;margin-top:12px;transition:all .2s}
 .footer-tip:hover{border-color:var(--accent);color:var(--accent)}
-@media(max-width:768px){.hero{padding:120px 0 60px}.pd-row{grid-template-columns:1.5fr 1fr 1fr 1fr;font-size:.78rem}.pricing{grid-template-columns:1fr;max-width:380px}}
-@media(max-width:480px){.container{padding:0 16px}.section{padding:60px 0}}
+/* Spin Wheel */
+.spin-section{background:var(--surface);text-align:center}
+.wheel-wrapper{position:relative;width:320px;height:320px;margin:0 auto 32px}
+.wheel-outer{width:320px;height:320px;border-radius:50%;padding:8px;background:conic-gradient(from 0deg,var(--primary),var(--accent),var(--blue),var(--primary));animation:wheelGlow 3s ease-in-out infinite alternate}
+@keyframes wheelGlow{0%{box-shadow:0 0 30px rgba(16,185,129,.3)}100%{box-shadow:0 0 60px rgba(59,130,246,.4)}}
+.wheel-canvas{width:304px;height:304px;border-radius:50%;position:relative;overflow:hidden;transition:transform 4s cubic-bezier(.17,.67,.12,.99)}
+.wheel-canvas.spinning{pointer-events:none}
+.wheel-segment{position:absolute;width:100%;height:100%;clip-path:polygon(50% 50%,50% 0%,100% 0%);transform-origin:50% 50%}
+.wheel-svg{width:304px;height:304px;border-radius:50%;display:block}
+.wheel-pointer{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:28px solid var(--accent);z-index:5;filter:drop-shadow(0 2px 6px rgba(245,158,11,.5))}
+.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:var(--surface);border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:var(--accent);z-index:4;cursor:pointer;transition:all .2s}
+.wheel-center:hover{background:var(--accent);color:#fff;transform:translate(-50%,-50%) scale(1.05)}
+.spin-result{margin-top:16px;font-size:1.2rem;font-weight:700;color:var(--accent);min-height:36px;opacity:0;transition:opacity .5s}
+.spin-result.show{opacity:1}
+.spin-cooldown{color:var(--muted);font-size:.9rem;margin-top:8px}
+.spin-share{display:none;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap}
+.spin-share.show{display:flex}
+/* Leaderboard */
+.lb-section{text-align:center}
+.lb-table{max-width:500px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.lb-row{display:grid;grid-template-columns:50px 1fr 80px 80px;padding:12px 20px;border-bottom:1px solid var(--border);font-size:.85rem;align-items:center}
+.lb-row:last-child{border:none}
+.lb-header{background:var(--surface);font-weight:700;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+.lb-rank{font-weight:800;color:var(--accent)}
+.lb-name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-refs{color:var(--primary);font-weight:700}
+.lb-pos{color:var(--muted);font-size:.8rem}
+.lb-empty{padding:40px;color:var(--muted);font-size:.9rem}
+/* Floating Tip Heart */
+.tip-float{position:fixed;bottom:24px;left:24px;z-index:90;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#f59e0b);border:none;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(239,68,68,.4);transition:all .3s;animation:heartBeat 2s infinite}
+.tip-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(239,68,68,.6)}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.1)}28%{transform:scale(1)}42%{transform:scale(1.08)}}
+/* Newsletter Firebase */
+.nl-form{display:flex;gap:8px;margin-top:16px;max-width:400px;margin-left:auto;margin-right:auto}
+.nl-form input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:12px 20px;font-size:.95rem;color:var(--text);font-family:inherit;outline:none}
+.nl-form input:focus{border-color:var(--primary)}
+.nl-form button{background:var(--primary);color:#fff;border:none;padding:12px 24px;border-radius:99px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nl-form button:hover{background:var(--secondary)}
+.nl-success{color:var(--primary);font-weight:600;display:none;margin-top:12px}
+/* Share prompt overlay */
+.share-prompt-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:199;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.share-prompt-overlay.active{display:flex}
+.share-prompt{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:36px;max-width:440px;width:90%;text-align:center;position:relative}
+.share-prompt h3{font-size:1.3rem;margin-bottom:8px}
+.share-prompt p{color:var(--muted);margin-bottom:20px;font-size:.9rem}
+.share-prompt .share-btns{margin-bottom:16px}
+.share-prompt .close-share{background:none;border:none;color:var(--muted);font-size:.85rem;cursor:pointer;text-decoration:underline}
+@media(max-width:768px){.hero{padding:120px 0 60px}.pd-row{grid-template-columns:1.5fr 1fr 1fr 1fr;font-size:.78rem}.pricing{grid-template-columns:1fr;max-width:380px}.wheel-wrapper,.wheel-outer,.wheel-svg{width:260px;height:260px}.wheel-canvas{width:244px;height:244px}.lb-row{grid-template-columns:40px 1fr 60px 60px;padding:10px 14px;font-size:.8rem}}
+@media(max-width:480px){.container{padding:0 16px}.section{padding:60px 0}.nl-form{flex-direction:column}.nl-form button{width:100%}}
 </style>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pn0x1z2y3w");</script>
 </head>
 <body>
 <nav class="nav"><div class="container">
@@ -206,6 +254,24 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
   <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">🏷️</div><h3>Inventory Tracker</h3><p>Track cards you've bought but haven't sold yet. Know your holding cost.</p></div>
   <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">📱</div><h3>Mobile First</h3><p>Log flips on your phone at card shows, shops, or anywhere you buy and sell.</p></div>
   <div class="feat" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"><div class="feat-icon">🧾</div><h3>Tax Reports</h3><p>Export your flip data for tax season. Know exactly what to report. (Pro)</p></div>
+</div>
+</div></section>
+
+<section class="section spin-section" id="spin"><div class="container">
+<h2 class="section-title">Daily Spin</h2>
+<p class="section-sub">Spin once every 24 hours for a chance to win Pro perks and bonuses</p>
+<div class="wheel-wrapper">
+  <div class="wheel-pointer"></div>
+  <div class="wheel-outer">
+    <svg class="wheel-svg" id="spinWheel" viewBox="0 0 304 304"></svg>
+  </div>
+  <div class="wheel-center" id="spinBtn" onclick="spinWheel()">SPIN</div>
+</div>
+<div class="spin-result" id="spinResult"></div>
+<div class="spin-cooldown" id="spinCooldown"></div>
+<div class="spin-share" id="spinShare">
+  <button class="share-btn" onclick="shareSpinX()">Share on X</button>
+  <button class="share-btn" onclick="copySpinLink()">Copy Link</button>
 </div>
 </div></section>
 
@@ -273,6 +339,15 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 </div>
 </div></section>
 
+<section class="section lb-section" id="leaderboard"><div class="container">
+<h2 class="section-title">Referral Leaderboard</h2>
+<p class="section-sub">Top 100 referrers get lifetime Pro free. Each referral = 10 spots up.</p>
+<div class="lb-table">
+  <div class="lb-row lb-header"><span>#</span><span>Flipper</span><span>Referrals</span><span>Position</span></div>
+  <div id="lbBody"><div class="lb-empty">Be the first on the leaderboard! Share your referral link above.</div></div>
+</div>
+</div></section>
+
 <section class="section" id="faq"><div class="container">
 <h2 class="section-title">FAQ</h2>
 <div class="faq-list">
@@ -284,11 +359,15 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 </div>
 </div></section>
 
-<section class="section newsletter"><div class="container">
+<section class="section newsletter" id="newsletter"><div class="container">
 <div class="nl-box">
   <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:8px">Flip Ink Weekly</h2>
   <p style="color:var(--muted);margin-bottom:20px;font-size:.95rem">Flipping tips, market trends, and profit strategies. Free.</p>
-  <iframe src="https://embeds.beehiiv.com/universal" data-test-id="beehiiv-embed" height="52" frameborder="0" scrolling="no" style="width:100%;border-radius:8px;background:transparent"></iframe>
+  <form class="nl-form" id="nlForm" onsubmit="submitNewsletter(event)">
+    <input type="email" id="nlEmail" placeholder="you@email.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="nl-success" id="nlSuccess">You're subscribed! Check your inbox.</p>
 </div>
 </div></section>
 
@@ -300,6 +379,21 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 <div class="tip-addr"><label>ETH</label><code onclick="copyAddr(this)">0xD2aC89253b5F20f5b03b5B591297Fa4FCC37d41c</code></div>
 <div class="tip-addr"><label>SOL</label><code onclick="copyAddr(this)">Cds2aUuhyJa4NaZo7JER7LakW4VmmfnqVixHusrKKZsm</code></div>
 </div></div>
+
+<button class="tip-float" onclick="openTip()" aria-label="Support us" title="Support Flip Ink">&#10084;</button>
+
+<div class="share-prompt-overlay" id="sharePrompt">
+<div class="share-prompt">
+  <h3>Share Flip Ink!</h3>
+  <p id="sharePromptText">Tell your flipper friends and move up the waitlist.</p>
+  <div class="share-btns">
+    <button class="share-btn" onclick="shareX()">Share on X</button>
+    <button class="share-btn" onclick="shareWA()">WhatsApp</button>
+    <button class="share-btn" onclick="copyRef()">Copy Link</button>
+  </div>
+  <button class="close-share" onclick="closeSharePrompt()">Maybe later</button>
+</div>
+</div>
 
 <footer class="footer"><div class="container">
 <div class="footer-links">
@@ -317,7 +411,7 @@ a{color:var(--primary);text-decoration:none}a:hover{color:var(--accent)}
 
 <script>
 firebase.initializeApp({databaseURL:"https://predict-network-ec767-default-rtdb.firebaseio.com",projectId:"predict-network-ec767"});
-const db=firebase.database(),wlRef=db.ref('flipink/waitlist'),stRef=db.ref('flipink/stats'),lbRef=db.ref('flipink/leaderboard');
+const db=firebase.database(),wlRef=db.ref('flipink/waitlist'),stRef=db.ref('flipink/stats'),lbRef=db.ref('flipink/leaderboard'),spinRef=db.ref('flipink/spins'),nlRef=db.ref('flipink/newsletter');
 let userData=JSON.parse(localStorage.getItem('flipink_user')||'null');
 
 function genCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<8;i++)r+=c[Math.floor(Math.random()*c.length)];return r;}
@@ -325,9 +419,10 @@ function getRef(){return new URLSearchParams(location.search).get('ref')||'';}
 
 stRef.on('value',s=>{const d=s.val()||{};document.getElementById('liveSignups').textContent=(d.totalSignups||0).toLocaleString();document.getElementById('liveRefs').textContent=(d.totalReferrals||0).toLocaleString();});
 
+/* ===== WAITLIST ===== */
 document.getElementById('waitlistForm').addEventListener('submit',async e=>{
   e.preventDefault();const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Joining...';
-  const name=document.getElementById('wlName').value.trim(),email=document.getElementById('wlEmail').value.trim().toLowerCase(),interests=document.getElementById('wlInterest').value,referredBy=getRef(),referralCode=genCode();
+  const name=document.getElementById('wlName').value.trim(),email=document.getElementById('wlEmail').value.trim().toLowerCase(),interests=document.getElementById('wlInterest').value,referredBy=getRef()||localStorage.getItem('flipink_ref')||'',referralCode=genCode();
   const existing=await wlRef.orderByChild('email').equalTo(email).once('value');
   if(existing.exists()){existing.forEach(c=>{userData={...c.val(),id:c.key}});localStorage.setItem('flipink_user',JSON.stringify(userData));showSuccess();return;}
   const snap=await stRef.once('value'),pos=((snap.val()||{}).totalSignups||0)+1;
@@ -335,9 +430,11 @@ document.getElementById('waitlistForm').addEventListener('submit',async e=>{
   await ref.set(entry);await stRef.update({totalSignups:pos});
   if(referredBy){const rs=await wlRef.orderByChild('referralCode').equalTo(referredBy).once('value');
     if(rs.exists()){rs.forEach(c=>{const d=c.val(),nc=(d.referralCount||0)+1,np=Math.max(1,d.position-10);c.ref.update({referralCount:nc,position:np});lbRef.child(c.key).set({name:d.name,referrals:nc,position:np});});
-    await stRef.update({totalReferrals:firebase.database.ServerValue.increment(1)});}}
+    await stRef.update({totalReferrals:firebase.database.ServerValue.increment(1)});
+    trackEvent('referral_signup',{referrer:referredBy});}}
   userData={...entry,id:ref.key};localStorage.setItem('flipink_user',JSON.stringify(userData));
   trackEvent('waitlist_signup',{interests,referred:!!referredBy});showSuccess();
+  setTimeout(()=>showSharePrompt('You\'re on the list! Share to move up faster.'),1500);
 });
 
 function showSuccess(){document.getElementById('waitlistForm').style.display='none';document.getElementById('formSuccess').style.display='block';
@@ -345,16 +442,151 @@ function showSuccess(){document.getElementById('waitlistForm').style.display='no
   document.getElementById('referral').style.display='block';}
 function checkExisting(){if(userData&&userData.id){wlRef.child(userData.id).once('value',s=>{if(s.exists()){userData={...s.val(),id:s.key};localStorage.setItem('flipink_user',JSON.stringify(userData));showSuccess();}});}}
 
-function copyRef(){const i=document.getElementById('refLink');navigator.clipboard.writeText(i.value);const b=i.nextElementSibling;b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000);trackEvent('referral_click',{method:'copy'});}
-function shareX(){const t=encodeURIComponent(`I'm tracking my card flips with Flip Ink — the free profit tracker for card flippers. Join me: flip.ink?ref=${userData.referralCode}`);window.open(`https://x.com/intent/tweet?text=${t}`,'_blank');trackEvent('social_share',{platform:'x'});}
-function shareWA(){const t=encodeURIComponent(`Track your card flipping profits for free! Join Flip Ink: flip.ink?ref=${userData.referralCode}`);window.open(`https://wa.me/?text=${t}`,'_blank');trackEvent('social_share',{platform:'whatsapp'});}
+function copyRef(){const i=document.getElementById('refLink');navigator.clipboard.writeText(i.value);const b=i.nextElementSibling;b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000);trackEvent('referral_share',{method:'copy'});}
+function shareX(){const code=userData?userData.referralCode:'';const t=encodeURIComponent(`I'm tracking my card flips with @SpunkArt13's Flip Ink -- the free profit tracker for card flippers. Join me: flip.ink?ref=${code}`);window.open(`https://x.com/intent/tweet?text=${t}`,'_blank');trackEvent('referral_share',{platform:'x'});}
+function shareWA(){const code=userData?userData.referralCode:'';const t=encodeURIComponent(`Track your card flipping profits for free! Join Flip Ink: flip.ink?ref=${code}`);window.open(`https://wa.me/?text=${t}`,'_blank');trackEvent('referral_share',{platform:'whatsapp'});}
+
+/* ===== SPIN WHEEL ===== */
+const prizes=['Free Month Pro','Profit Alert','VIP Badge','2x Tracking','Mystery Bonus','Early Feature','Custom Report','Try Again'];
+const prizeColors=['#10b981','#3b82f6','#f59e0b','#8b5cf6','#ef4444','#06b6d4','#ec4899','#6b7280'];
+let wheelAngle=0,isSpinning=false;
+
+function buildWheel(){
+  const svg=document.getElementById('spinWheel');
+  const cx=152,cy=152,r=148,n=prizes.length,anglePerSlice=360/n;
+  let html='';
+  for(let i=0;i<n;i++){
+    const startAngle=(i*anglePerSlice-90)*Math.PI/180;
+    const endAngle=((i+1)*anglePerSlice-90)*Math.PI/180;
+    const x1=cx+r*Math.cos(startAngle),y1=cy+r*Math.sin(startAngle);
+    const x2=cx+r*Math.cos(endAngle),y2=cy+r*Math.sin(endAngle);
+    const largeArc=anglePerSlice>180?1:0;
+    html+=`<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} Z" fill="${prizeColors[i]}"/>`;
+    const midAngle=((i+0.5)*anglePerSlice-90)*Math.PI/180;
+    const tx=cx+(r*0.62)*Math.cos(midAngle),ty=cy+(r*0.62)*Math.sin(midAngle);
+    const rot=(i+0.5)*anglePerSlice;
+    html+=`<text x="${tx}" y="${ty}" fill="#fff" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="central" transform="rotate(${rot},${tx},${ty})">${prizes[i]}</text>`;
+  }
+  svg.innerHTML=html;
+}
+
+function getSpinCooldown(){
+  const last=localStorage.getItem('flipink_spin');
+  if(!last)return 0;
+  const diff=Date.now()-parseInt(last);
+  const remaining=86400000-diff;
+  return remaining>0?remaining:0;
+}
+
+function updateCooldownDisplay(){
+  const cd=getSpinCooldown();
+  const el=document.getElementById('spinCooldown');
+  const btn=document.getElementById('spinBtn');
+  if(cd>0){
+    const h=Math.floor(cd/3600000),m=Math.floor((cd%3600000)/60000),s=Math.floor((cd%60000)/1000);
+    el.textContent=`Next spin in ${h}h ${m}m ${s}s`;
+    btn.textContent='WAIT';
+    btn.style.pointerEvents='none';
+    btn.style.opacity='.5';
+  }else{
+    el.textContent='';
+    btn.textContent='SPIN';
+    btn.style.pointerEvents='auto';
+    btn.style.opacity='1';
+  }
+}
+
+function spinWheel(){
+  if(isSpinning)return;
+  const cd=getSpinCooldown();
+  if(cd>0){updateCooldownDisplay();return;}
+  isSpinning=true;
+  const svg=document.getElementById('spinWheel');
+  const resultEl=document.getElementById('spinResult');
+  resultEl.classList.remove('show');
+
+  const winIndex=Math.floor(Math.random()*prizes.length);
+  const sliceAngle=360/prizes.length;
+  const targetAngle=360-(winIndex*sliceAngle+sliceAngle/2);
+  const totalSpin=1800+targetAngle+Math.random()*sliceAngle*0.5;
+  wheelAngle+=totalSpin;
+
+  svg.style.transition='transform 4s cubic-bezier(.17,.67,.12,.99)';
+  svg.style.transform=`rotate(${wheelAngle}deg)`;
+
+  setTimeout(()=>{
+    isSpinning=false;
+    const prize=prizes[winIndex];
+    resultEl.textContent=prize==='Try Again'?'Try Again tomorrow!':'You won: '+prize+'!';
+    resultEl.classList.add('show');
+    localStorage.setItem('flipink_spin',Date.now().toString());
+    updateCooldownDisplay();
+
+    spinRef.push({prize,timestamp:Date.now(),user:userData?userData.referralCode:'anon'});
+    trackEvent('spin_wheel',{prize});
+
+    if(prize!=='Try Again'){
+      document.getElementById('spinShare').classList.add('show');
+      setTimeout(()=>showSharePrompt('You won '+prize+'! Share the news.'),2000);
+    }
+  },4200);
+}
+
+function shareSpinX(){const code=userData?userData.referralCode:'';const t=encodeURIComponent(`Just won a prize on @SpunkArt13's Flip Ink daily spin! Free profit tracker for card flippers: flip.ink?ref=${code}`);window.open(`https://x.com/intent/tweet?text=${t}`,'_blank');trackEvent('referral_share',{platform:'x',context:'spin'});}
+function copySpinLink(){const code=userData?userData.referralCode:'';const link=`flip.ink?ref=${code}`;navigator.clipboard.writeText(link);const btns=document.querySelectorAll('#spinShare .share-btn');btns[1].textContent='Copied!';setTimeout(()=>btns[1].textContent='Copy Link',2000);}
+
+/* ===== LEADERBOARD ===== */
+function loadLeaderboard(){
+  lbRef.orderByChild('referrals').limitToLast(10).on('value',snap=>{
+    const body=document.getElementById('lbBody');
+    const entries=[];
+    snap.forEach(c=>{entries.push(c.val());});
+    entries.sort((a,b)=>(b.referrals||0)-(a.referrals||0));
+    if(entries.length===0){body.innerHTML='<div class="lb-empty">Be the first on the leaderboard! Share your referral link above.</div>';return;}
+    let html='';
+    entries.forEach((e,i)=>{
+      const medal=i===0?'&#129351;':i===1?'&#129352;':i===2?'&#129353;':'';
+      html+=`<div class="lb-row"><span class="lb-rank">${medal||'#'+(i+1)}</span><span class="lb-name">${e.name||'Flipper'}</span><span class="lb-refs">${e.referrals||0}</span><span class="lb-pos">#${e.position||'-'}</span></div>`;
+    });
+    body.innerHTML=html;
+  });
+}
+
+/* ===== NEWSLETTER ===== */
+async function submitNewsletter(e){
+  e.preventDefault();
+  const email=document.getElementById('nlEmail').value.trim().toLowerCase();
+  if(!email)return;
+  await nlRef.push({email,timestamp:Date.now()});
+  document.getElementById('nlForm').style.display='none';
+  document.getElementById('nlSuccess').style.display='block';
+  trackEvent('newsletter_signup',{});
+}
+
+/* ===== SHARE PROMPT ===== */
+function showSharePrompt(msg){
+  if(!userData)return;
+  document.getElementById('sharePromptText').textContent=msg||'Tell your flipper friends and move up the waitlist.';
+  document.getElementById('sharePrompt').classList.add('active');
+}
+function closeSharePrompt(){document.getElementById('sharePrompt').classList.remove('active');}
+document.getElementById('sharePrompt').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSharePrompt();});
+
+/* ===== FAQ + TIP ===== */
 function toggleFaq(b){const a=b.nextElementSibling,o=a.classList.contains('open');document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.faq-q').forEach(x=>x.classList.remove('active'));if(!o){a.classList.add('open');b.classList.add('active');trackEvent('faq_open');}}
-function openTip(){document.getElementById('tipOverlay').classList.add('active');}
+function openTip(){document.getElementById('tipOverlay').classList.add('active');trackEvent('tip_click');}
 function closeTip(){document.getElementById('tipOverlay').classList.remove('active');}
 document.getElementById('tipOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTip();});
 function copyAddr(el){navigator.clipboard.writeText(el.textContent);const o=el.textContent;el.textContent='Copied!';setTimeout(()=>el.textContent=o,1500);}
+
+/* ===== INIT ===== */
 stRef.child('totalVisitors').once('value',s=>stRef.update({totalVisitors:(s.val()||0)+1}));
-checkExisting();trackEvent('page_view');
+buildWheel();
+updateCooldownDisplay();
+setInterval(updateCooldownDisplay,1000);
+loadLeaderboard();
+checkExisting();
+trackEvent('page_view');
 const r=getRef();if(r)localStorage.setItem('flipink_ref',r);
 </script>
 <!-- Watermark Protection -->
